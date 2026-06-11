@@ -553,6 +553,8 @@
   "company": "Entreprise",
   "invoice": "Facture",
   "preview": "Aperçu",
+  "no_sales_data": "Aucune donnée de vente disponible pour le moment",
+  "no_payment_methods_data": "Aucune méthode de paiement disponible. Veuillez en ajouter dans les paramètres.",
   "company_name": "Nom de l'entreprise",
   "company_nif": "NIF (N° Identification Fiscale)",
   "company_rc": "RC (Registre de Commerce)",

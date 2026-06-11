@@ -461,6 +461,8 @@
   "paid": "Paid",
   "partial": "Partially paid",
   "overdue": "Overdue",
+  "no_sales_data": "No sales data available",
+  "no_payment_methods_data": "No payment methods available. Please add some in settings.",
   "draft": "Draft",
   "cash": "Cash",
   "bank_transfer": "Bank transfer",
