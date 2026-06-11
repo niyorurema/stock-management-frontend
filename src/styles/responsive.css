@@ -1,0 +1,468 @@
+/* ============================================
+   RESPONSIVE GLOBAL — StockManager Pro
+   Breakpoints: 640px (sm), 768px (md), 1024px (lg)
+   ============================================ */
+
+:root {
+  --bp-sm: 640px;
+  --bp-md: 768px;
+  --bp-lg: 1024px;
+}
+
+/* --- Utilitaires --- */
+.hide-mobile {
+  display: revert;
+}
+
+.show-mobile-only {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .hide-mobile {
+    display: none !important;
+  }
+
+  .show-mobile-only {
+    display: flex !important;
+  }
+
+  .stack-mobile {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .full-width-mobile {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+}
+
+/* --- Layout mobile --- */
+@media (max-width: 768px) {
+  /* Un seul bouton menu : celui du header */
+  .mobile-hamburger {
+    display: none !important;
+  }
+
+  .header-top {
+    padding: 10px 12px 10px 12px;
+    gap: 10px;
+  }
+
+  .toolbar {
+    padding: 10px 12px;
+    gap: 10px;
+  }
+
+  .toolbar-actions {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .toolbar-left,
+  .toolbar-center {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .breadcrumb {
+    justify-content: center;
+  }
+
+  .page-title {
+    font-size: 17px !important;
+  }
+
+  .app-footer {
+    padding: 10px 12px;
+    font-size: 11px;
+  }
+}
+
+/* Safe area (encoches) */
+@supports (padding: max(0px)) {
+  .header-top {
+    padding-top: max(10px, env(safe-area-inset-top));
+  }
+
+  .app-footer {
+    padding-bottom: max(10px, env(safe-area-inset-bottom));
+  }
+
+  .main-content {
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
+  }
+}
+
+/* --- Conteneurs de pages --- */
+@media (max-width: 768px) {
+  .dashboard-container,
+  .stock-container,
+  .products-page,
+  .invoices-page,
+  .customers-page,
+  .suppliers-page,
+  .purchase-orders-page,
+  .warehouses-page,
+  .users-page,
+  .categories-container,
+  .reports-page,
+  .sales-dashboard,
+  .settings-page,
+  .profile-page,
+  .notifications-page {
+    padding: 16px !important;
+    min-height: auto !important;
+  }
+
+  .page-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+
+  .page-header h2,
+  .page-header h1 {
+    font-size: 22px !important;
+  }
+
+  .page-header > div:last-child,
+  .header-actions,
+  .page-actions {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .stats-badge {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    font-size: 12px !important;
+    padding: 8px 12px !important;
+  }
+
+  .stock-toolbar,
+  .filters-bar,
+  .filters-row,
+  .toolbar-filters,
+  .page-toolbar {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+  }
+
+  .search-box {
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .search-filters,
+  .filter-group,
+  .filters-container {
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+
+  .filter-group select,
+  .filter-group input,
+  .select-filter,
+  .select-product,
+  .items-per-page select {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+
+  .items-per-page {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .bulk-actions,
+  .bulk-actions-bar,
+  .bulk-bar {
+    flex-wrap: wrap !important;
+    width: 100% !important;
+    gap: 8px !important;
+  }
+
+  .btn-primary,
+  .btn-secondary,
+  .btn-export {
+    max-width: 100%;
+  }
+
+  .action-buttons {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .btn-icon {
+    min-width: 36px;
+    min-height: 36px;
+  }
+}
+
+/* --- Grilles & KPI --- */
+@media (max-width: 1024px) {
+  .two-columns,
+  .charts-row,
+  .charts-grid,
+  .reports-grid,
+  .kpi-grid:not(.kpi-grid-mobile-2) {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .kpi-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .profile-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .profile-header-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .profile-roles {
+    justify-content: center;
+  }
+
+  .settings-tabs {
+    flex-direction: column !important;
+  }
+
+  .settings-tab {
+    width: 100% !important;
+    text-align: left !important;
+  }
+
+  .form-grid,
+  .form-row,
+  .modal-form-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* --- Tableaux --- */
+@media (max-width: 768px) {
+  .table-container {
+    padding: 12px !important;
+    border-radius: 12px !important;
+  }
+
+  .table-responsive {
+    max-height: 55vh;
+    border-radius: 12px;
+  }
+
+  .data-table {
+    font-size: 12px;
+  }
+
+  .data-table thead th,
+  .data-table td {
+    padding: 8px 6px !important;
+    white-space: nowrap;
+  }
+
+  /* Colonnes optionnelles masquées sur mobile */
+  .col-desc,
+  .desc-col,
+  .hide-col-mobile {
+    display: none !important;
+  }
+
+  .pagination,
+  .pagination-bar,
+  .pagination-controls {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    padding: 12px 0 !important;
+  }
+
+  .page-info {
+    width: 100%;
+    text-align: center;
+    order: -1;
+  }
+}
+
+/* --- Modales --- */
+@media (max-width: 768px) {
+  .modal-overlay {
+    padding: 0 !important;
+    align-items: flex-end !important;
+  }
+
+  .modal-container,
+  .modal-container-large,
+  .modal-container-small,
+  .modal-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: 92vh !important;
+    margin: 0 !important;
+    border-radius: 20px 20px 0 0 !important;
+  }
+
+  .modal-header {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .modal-footer,
+  .modal-actions {
+    flex-direction: column-reverse !important;
+    gap: 10px !important;
+  }
+
+  .modal-footer button,
+  .modal-actions button {
+    width: 100% !important;
+  }
+
+  .items-table-wrapper,
+  .inventory-table-container {
+    max-height: 40vh;
+  }
+}
+
+/* --- Notifications --- */
+@media (max-width: 768px) {
+  .notifications-page {
+    max-width: 100% !important;
+  }
+
+  .notifications-toolbar {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .filter-tabs {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .filter-tabs button {
+    flex: 1;
+    text-align: center;
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+
+  .mark-all-btn {
+    width: 100%;
+  }
+
+  .notification-row .notif-delete {
+    opacity: 1 !important;
+    min-width: 36px;
+    min-height: 36px;
+  }
+}
+
+/* --- Login --- */
+@media (max-width: 1024px) {
+  .login-container .modal-left {
+    width: 45%;
+  }
+
+  .login-container .modal-right {
+    width: 55%;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-container {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .login-container .modal-left {
+    display: none !important;
+  }
+
+  .login-container .modal-right {
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 100vh;
+    min-height: 100dvh;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+  .login-container .modal-right-content {
+    padding: 48px 24px 32px !important;
+    justify-content: flex-start !important;
+  }
+
+  .login-container .form-header h2 {
+    font-size: 24px !important;
+  }
+
+  .login-container .form-options {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-container .modal-right-content {
+    padding: 40px 16px 24px !important;
+  }
+
+  .login-container .lock-icon {
+    font-size: 40px !important;
+  }
+}
+
+/* --- Charts --- */
+@media (max-width: 768px) {
+  .chart-card,
+  .chart-container {
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+
+  .recharts-wrapper {
+    max-width: 100% !important;
+  }
+
+  .dashboard-actions,
+  .date-filters {
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+
+  .filter-group input,
+  .btn-refresh {
+    width: 100% !important;
+  }
+}
+
+/* --- Tablet --- */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .main-content {
+    padding: 20px;
+  }
+
+  .sidebar.collapsed ~ .main-wrapper {
+    margin-left: 80px;
+  }
+}
