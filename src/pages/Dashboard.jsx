@@ -29,8 +29,8 @@ import { useLanguage } from "../contexts/LanguageContext";
 import { useTheme } from "../contexts/ThemeContext";
 import Loader from "../components/common/Loader";
 import DailyPerformanceChart from "../components/charts/DailyPerformanceChart";
-import { authFetchJson } from "../utils/authFetch";
-
+//import { authFetchJson } from "../utils/authFetch";
+import { reportService, getApiErrorMessage } from "../services/apiService";
 // Helpers
 const formatNumber = (num) => new Intl.NumberFormat("fr-BI").format(num || 0);
 const formatCurrency = (num) =>
@@ -194,42 +194,49 @@ const Dashboard = () => {
     if (!isMounted.current) return;
 
     setLoading(true);
+    //setLoadingText("Chargement des données...");
 
     try {
-      const params = new URLSearchParams({
+      const params = {
         start_date: dateRange.start,
         end_date: dateRange.end,
-      });
+      };
 
-      const [dashboardResult, performanceResult] = await Promise.all([
-        authFetchJson(`/api/reports/dashboard?${params}`).then((r) => r.data),
-        authFetchJson(`/api/reports/performance`, {
-          method: "POST",
-          body: JSON.stringify({
-            start_date: dateRange.start,
-            end_date: dateRange.end,
-          }),
-        }).then((r) => r.data),
-      ]);
+      // Dashboard
+      let dashboardData = null;
+      try {
+        const dashboardResponse = await reportService.getDashboard(params);
+        if (dashboardResponse.data?.success) {
+          dashboardData = dashboardResponse.data.data;
+        }
+      } catch (err) {
+        console.error("Erreur dashboard:", err);
+      }
+
+      // Performance
+      let performanceData = null;
+      try {
+        const performanceResponse = await reportService.getPerformance(params);
+        if (performanceResponse.data?.success) {
+          performanceData = performanceResponse.data.data;
+        }
+      } catch (err) {
+        console.error("Erreur performance:", err);
+      }
 
       if (!isMounted.current) return;
 
-      if (dashboardResult.success) {
-        setDashboardData(dashboardResult.data);
-      }
-      if (performanceResult.success) {
-        setPerformanceData(performanceResult.data);
-      }
+      if (dashboardData) setDashboardData(dashboardData);
+      if (performanceData) setPerformanceData(performanceData);
     } catch (error) {
       console.error("Erreur chargement:", error);
-      toast.error(t("error_connection"));
+      toast.error(getApiErrorMessage(error, t("error_connection")));
     } finally {
       if (isMounted.current) {
         setLoading(false);
       }
     }
   }, [dateRange.start, dateRange.end, t]);
-
   useEffect(() => {
     isMounted.current = true;
     loadDashboard();
